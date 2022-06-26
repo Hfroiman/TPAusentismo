@@ -37,13 +37,10 @@
 		<Unit filename="Menus.h" />
 		<Unit filename="Presentismo.cpp" />
 		<Unit filename="Presentismo.h" />
-		<Unit filename="Vacaciones.cpp" />
-		<Unit filename="Vacaciones.h" />
 		<Unit filename="clases.h" />
 		<Unit filename="empleado.cpp" />
 		<Unit filename="fecha.cpp" />
 		<Unit filename="fecha.h" />
-		<Unit filename="funciones (1).cpp" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
