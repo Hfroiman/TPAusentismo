@@ -15,15 +15,15 @@ void Presentismo::Cargar(int leg){
     FechaSalida.Cargar();
     HoraSalida.CargarH();
 
-        hsfaltantes=((getHoraSalida().getHora()-getHoraEntrada().getHora())-jornadaok)*minutos;
-        mfaltantes=(getHoraSalida().getMinutos()-getHoraEntrada().getMinutos());
-        total=hsfaltantes+(mfaltantes);
-        setMinutosFaltantes(total);
+    hsfaltantes=((getHoraSalida().getHora()-getHoraEntrada().getHora())-jornadaok)*minutos;
+    mfaltantes=(getHoraSalida().getMinutos()-getHoraEntrada().getMinutos());
+    total=hsfaltantes+(mfaltantes);
+    setMinutosFaltantes(total);
 }
 
 void Presentismo::Mostrar(){
     if(Estado==true){
-            int h;
+    int h;
     cout<<"Legajo"<<getLegajo()<<endl;
     cout<<"fecha entrada"<<getFechaEntrada().getDia()<<"/"<<getFechaEntrada().getMes()<<endl;
     cout<<"fecha Salida"<<getFechaSalida().getDia()<<"/"<<getFechaSalida().getMes()<<endl;

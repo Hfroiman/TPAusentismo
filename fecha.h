@@ -21,7 +21,8 @@ class Fecha{
         std::string toString();
         void Cargar();
         void CargarH();
-        void Mostrar();
+        void Mostrar2();
+        void Mostrar(int);
         void CargarHorario();
         void Mostrarhorario();
     private:

@@ -119,7 +119,7 @@ int BuscaCantDiasXmes(int f){
     }
 }
 
-void Fecha::Mostrar(){
+void Fecha::Mostrar2(){
         cout<<" ANIO "<<endl;
         cout<<getAnio()<<endl;
         cout<<" MES "<<endl;
@@ -130,4 +130,9 @@ void Fecha::Mostrar(){
         cout<<getHora()<<endl;
         cout<<" MINUTOS "<<endl;
         cout<<getMinutos()<<endl;
+}
+///fecha para alta
+void Fecha::Mostrar(int){
+    cout << "FECHA: "<< getDia()<< "/"<< getMes()<< "/"<< getAnio()<<endl;
+    ///cout << "HORA: "<< getHora()<< ":"<< getMinutos()<<endl;
 }

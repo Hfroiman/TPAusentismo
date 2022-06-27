@@ -31,6 +31,7 @@ void CargaDatos(){
     encontro=BuscarLegajo(leg);
     if(encontro==-2){
         obj.Cargar(leg);
+        obj.setEstado(true);
         if(obj.GrabarEnDisco()==true){
           cout<<"SE GRABO CORRECTAMENTE"<<endl;
         }
@@ -38,6 +39,7 @@ void CargaDatos(){
     else{
         cout<<"EMPLEADO YA SE ENCUENTRA DADO DE ALTA "<<endl;
     }
+    system("pause>null");
     system("cls");
 }
 
@@ -45,7 +47,7 @@ int BuscarLegajo(int leg){
     Empleado obj;
     int pos=0;
     while(obj.leerDisco(pos)==1){
-        if(obj.getLegajo()==leg){
+        if(obj.getLegajo()==leg && obj.getEstado()==true){
             return pos;
         }
         pos++;
@@ -59,11 +61,18 @@ void BajaEmpleado(){
     cout<<"INGRESAR LEGAJO "<<endl;
     cin>>leg;
     encontro=BuscarLegajo(leg);
-    if(obj.leerDisco(encontro)==1){
-        obj.setEstado(false);
-        obj.GrabarEnDisco(encontro);
-        cout<<"SE GENERO LA BAJA DEL EMPLEADO "<<endl;
+    if(encontro>-1){
+        if(obj.leerDisco(encontro)==1){
+            obj.setEstado(false);
+            obj.GrabarEnDisco(encontro);
+            cout<<"SE GENERO LA BAJA DEL EMPLEADO "<<endl;
+        }
     }
+    else{
+        cout<<"NO SE ENCONTRO EL LEGAJO"<<endl;
+    }
+    system("pause>null");
+    system("cls");
 }
 
 void ListadoEmpleado(int sector){
@@ -151,12 +160,12 @@ void AsistenciaPersonal(){
         pos=BuscarLegajo(leg);
         if(pos>=0){
             aux.Cargar(leg);
-            /*if(aux.getMinutosFaltantes()<0){
-                char m;
+            if((aux.getMinutosFaltantes()*-1)>0){
+                char m[25]{0};
                 cout<<"INGRESAR MENSAJE POR INCUMPLIMIENTO DEL PRESENTIMOS "<<endl;
                 cin>>m;
                 aux.setMSJ(m);
-            }*/
+            }
             grabo=aux.grabarDisco();
             if(grabo==true){
                 cout<<"ASISTENCIA CARGADA CORRECTAMENTE "<<endl;
@@ -213,7 +222,7 @@ void ListadoAsistencia(){
                     cout << obj.getFechaSalida().getAnio();///FECHA SALIDA
                     cout << "\t" <<"   "<<obj.getHoraEntrada().getHora()<<":"<<obj.getHoraEntrada().getMinutos();///HORA ENTRADA
                     cout << "\t"<< "\t" <<"   "<<obj.getHoraSalida().getHora()<<":"<<obj.getHoraSalida().getMinutos();///HORA SALIDA
-                    cout << "\t"<< "\t" ; ///obj.getMensaje(); HACER EL GET Y LA PROPIEDAD
+                    cout << "\t"<< "\t" ; obj.getMSJ();
                     cout << endl;
                     total+=(obj.getMinutosFaltantes());
                 }

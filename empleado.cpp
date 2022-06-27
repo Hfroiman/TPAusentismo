@@ -26,7 +26,7 @@ void Empleado::Cargar(int leg){
         cin>>Apellido;
         cout<<"INGRESAR NOMBRE"<<endl;
         cin>>Nombre;
-        FechaActual.Cargar();
+        FechaActual.Mostrar(S);
         setEstado(true);
     }
 }
@@ -42,7 +42,7 @@ void Empleado::Mostrar(){
         cout<<Apellido<<endl;
         cout<<" NOMBRE"<<endl;
         cout<<Nombre<<endl;
-        FechaActual.Mostrar();
+        FechaActual.Mostrar2();
     }
     else{
         cout<<"NO HAY REGISTROS"<<endl;
