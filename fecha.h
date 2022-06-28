@@ -19,7 +19,7 @@ class Fecha{
              Fecha(int dia, int mes, int anio);
              Fecha();
         std::string toString();
-        void Cargar();
+        void Cargar(int);
         void CargarH();
         void Mostrar2();
         void Mostrar(int);

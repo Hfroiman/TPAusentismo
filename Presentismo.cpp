@@ -9,10 +9,10 @@ void Presentismo::Cargar(int leg){
     float hsfaltantes, mfaltantes;
     Legajo=leg;
     cout<<"INGRESAR ENTRADA"<<endl;
-    FechaEntrada.Cargar();
+    FechaEntrada.Cargar(leg);
     HoraEntrada.CargarH();
     cout<<"INGRESAR SALIDA"<<endl;
-    FechaSalida.Cargar();
+    FechaSalida.Cargar(leg);
     HoraSalida.CargarH();
 
     hsfaltantes=((getHoraSalida().getHora()-getHoraEntrada().getHora())-jornadaok)*minutos;
@@ -68,7 +68,7 @@ bool Presentismo::grabarDisco(int pos){
 }
 bool Presentismo::leerDisco(int pos){
     FILE *pu=fopen("Presentismo.dat","rb");
-    if(pu==NULL){
+    if(pu==nullptr){
         cout<<"ERROR DE ARCHIVO"<<endl;
         fclose(pu);
         return false;

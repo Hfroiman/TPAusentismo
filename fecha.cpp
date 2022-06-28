@@ -1,4 +1,5 @@
 #include "fecha.h"
+#include "Presentismo.h"
 #include <ctime>
 #include <iostream>
 using namespace std;
@@ -54,21 +55,45 @@ string Fecha::toString(){
     fecha = to_string(_dia) + "/" + to_string(_mes) + "/" + to_string(_anio);
     return fecha;
 }
-void Fecha::Cargar(){
-    int f, maxmes=12, dia;
+bool YaCargado(int d,int m,int a,int leg);
+
+void Fecha::Cargar(int leg){
+    int d,m,a, maxmes=12, dia;
+    bool cargado=true;
+    while(cargado==true){
         cout<<"INGRESAR ANIO "<<endl;
-        cin>>f;
-        setAnio(f);
+        cin>>a;
         cout<<"INGRESAR MES "<<endl;
-        cin>>f;
-        while(f>maxmes){
+        cin>>m;
+        while(m>maxmes){
             cout<<"EL MES DEBE SER EN EL RANGO DE 1 A 12 "<<endl;
-            cin>>f;
+            cin>>m;
         }
-        setMes(f);
-        dia=BuscaCantDiasXmes(f);//GG
-        setDia(dia);
+        dia=BuscaCantDiasXmes(m);//GG
+        cargado=YaCargado(dia,m,a,leg);
+        if(cargado==false){
+            setDia(dia);
+            setMes(m);
+            setAnio(a);
+        }
+        else{
+            cout<<"FECHA YA CARGADA ANTERIORMENTE, INGRESAR FECHA CORRECTA "<<endl;
+            system("pause > null");
+        }
+    }
 }
+
+bool YaCargado(int d,int m,int a,int leg){
+    Presentismo obj;
+    int pos=0;
+    while(obj.leerDisco(pos)==1){
+        if(obj.getLegajo()==leg && obj.getFechaEntrada().getAnio()==a && obj.getFechaEntrada().getMes()==m && obj.getFechaEntrada().getDia()==d){
+            return true;
+        }
+    }
+    return false;
+}
+
 void Fecha::CargarH(){
     int h;
         cout<<"INGRESAR HORA "<<endl;///HORAS DESDE 0 A 24
@@ -88,33 +113,34 @@ void Fecha::CargarH(){
 }
 
 int BuscaCantDiasXmes(int f){
+    int d;
     if(f==4 ||f==6 ||f==9 || f==11){
         cout<<"INGRESAR DIA "<<endl;
-        cin>>f;
-        while(f>30){
+        cin>>d;
+        while(d>30){
         cout<<"INGRESAR DIA, RANGO DE 1 A 30"<<endl;
-        cin>>f;
+        cin>>d;
         }
-        return f;
+        return d;
     }
     else{
         if(f==2){
             cout<<"INGRESAR DIA "<<endl;
-            cin>>f;
-            while(f>28){
+            cin>>d;
+            while(d>28){
             cout<<"INGRESAR DIA, RANGO DE 1 A 28"<<endl;
-            cin>>f;
+            cin>>d;
             }
-            return f;
+            return d;
         }
         else{
             cout<<"INGRESAR DIA "<<endl;
-            cin>>f;
-            while(f>31){
+            cin>>d;
+            while(d>31){
             cout<<"INGRESAR DIA, RANGO DE 1 A 31"<<endl;
-            cin>>f;
+            cin>>d;
             }
-            return f;
+            return d;
         }
     }
 }
