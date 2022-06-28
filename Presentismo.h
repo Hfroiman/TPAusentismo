@@ -29,7 +29,7 @@ public:
     void setHoraSalida (Fecha s){HoraSalida=s;}
     void setHoraIngreso (Fecha i){HoraEntrada=i;}
     void setMinutosFaltantes(int m){MinutosFaltantes=m;}
-    void setMSJ(char *m){strcpy(MSJ,m);}
+    void setMSJ(char *ms){strcpy(MSJ,ms);}
     void setLegajo(int leg){Legajo=leg;}
     ///FUNCIONE LOCALES
     void Cargar(int leg);

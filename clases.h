@@ -160,12 +160,13 @@ void AsistenciaPersonal(){
         pos=BuscarLegajo(leg);
         if(pos>=0){
             aux.Cargar(leg);
-            /*if((aux.getMinutosFaltantes()*-1)>0){
+            if((aux.getMinutosFaltantes()*-1)>0){
                 char m[25]{0};
                 cout<<"INGRESAR MENSAJE POR INCUMPLIMIENTO DEL PRESENTIMOS "<<endl;
                 cin>>m;
                 aux.setMSJ(m);
-            }*/
+                aux.getMSJ();
+            }
             grabo=aux.grabarDisco();
             if(grabo==true){
                 cout<<"ASISTENCIA CARGADA CORRECTAMENTE "<<endl;

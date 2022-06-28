@@ -90,6 +90,7 @@ bool YaCargado(int d,int m,int a,int leg){
         if(obj.getLegajo()==leg && obj.getFechaEntrada().getAnio()==a && obj.getFechaEntrada().getMes()==m && obj.getFechaEntrada().getDia()==d){
             return true;
         }
+        pos++;
     }
     return false;
 }
