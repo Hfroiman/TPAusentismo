@@ -5,6 +5,7 @@
 #include "clases.h"
 #include "Empleado.h"
 #include "Presentismo.h"
+#include <iomanip>
 
 using namespace std;
 ///Prototipos
@@ -203,43 +204,54 @@ void ListadoAsistencia(){
         cout<<"INGRESAR ANIO A CONSULTAR"<<endl;
         cin>>anio;
         if(pos>=0){
-            cout<<"======================================= ASISTENCIA ";
-            aux.leerDisco(pos);
-            cout<<aux.getApellido();
-            cout<<" ========================================================="<<endl<<endl;
+            cout << "=================================================================================================" << endl;
+                aux.leerDisco(pos);
+            cout << left;
+            cout << setw(10)  << " LEGAJO: ";
+            cout << setw(10) << aux.getLegajo();
+            cout << setw(11) << " APELLIDO: ";
+            cout << setw(15)<< aux.getApellido();
+            cout << setw(9) << " NOMBRE: ";
+            cout << setw(15)<< aux.getNombre();
+            cout << endl;
+            cout << "=================================================================================================" << endl;
+
+
             pos=0;
-            cout << "LEGAJO";
-            cout << "\t   DIA    ";
-            cout << "\t"<< "\t INGRESO ";
-            cout << "\t"<<"\t  EGRESO  " ;
-            cout << "\tHORA INGRESO";
-            cout << "\tHORA EGRESO";
-            cout << "\tMENSAJE DEL EMPLEADO    " << endl;
+            char vec[11];
             while(obj.leerDisco(pos)==1){
                 if(obj.getLegajo()==leg && DentroDelRango(pos, vecsemana, mes, anio)==true){
-                    cout << obj.getLegajo();
-                    cout << "\t";
-                    nombreDia(obj.getdia());
-                    cout << "\t"<< "\t"<<obj.getFechaEntrada().getDia()<< "/";
-                    cout << obj.getFechaEntrada().getMes() << "/";
-                    cout << obj.getFechaEntrada().getAnio();///ENTRDA FECHA
-                    cout << "\t"<< "\t" << obj.getFechaSalida().getDia()<< "/"; cout << obj.getFechaSalida().getMes() << "/";
-                    cout << obj.getFechaSalida().getAnio();///FECHA SALIDA
-                    cout << "\t" <<"   "<<obj.getHoraEntrada().getHora()<<":"<<obj.getHoraEntrada().getMinutos();///HORA ENTRADA
-                    cout << "\t"<< "\t" <<"   "<<obj.getHoraSalida().getHora()<<":"<<obj.getHoraSalida().getMinutos();///HORA SALIDA
-                    cout << "\t"<< "\t" << obj.getMSJ();
-                    cout << endl;
-                    total+=(obj.getMinutosFaltantes());
-                }
-                pos++;
+                char t[2]="/";
+                char h[2]=":";
+                int din=obj.getFechaEntrada().getDia(), mei=obj.getFechaEntrada().getMes(), ain=obj.getFechaEntrada().getAnio();
+                int hin=obj.getHoraEntrada().getHora(), minr=obj.getHoraEntrada().getMinutos();
+
+                int dse=obj.getFechaSalida().getDia(), mse=obj.getFechaSalida().getMes(), ans=obj.getFechaSalida().getAnio();
+                int hsa=obj.getHoraSalida().getHora(), mss=obj.getHoraSalida().getMinutos();
+            cout << left;
+            nombreDia(obj.getdia());
+            cout << setw(2) << "   Entrada " ;
+            cout << setw(2) <<din<<t<<mei<<t<<ain;
+            cout << setw(2) << "   Salida ";
+            cout << setw(2) <<dse<<t<<mse<<t<<ans;
+            cout << setw(2) << "   Hora Entrada ";
+            cout << setw(2) <<hin<<h<<minr;
+            cout << setw(2) << "   Salida ";
+            cout << setw(2) <<hsa<<h<<mss;
+            cout << setw(15) << "  MENSAJE EMPLEADO ";
+            cout << setw(15) <<obj.getMSJ();
+            cout << endl;
+            total+=(obj.getMinutosFaltantes());
             }
-                cout<<"=================================================================================================================="<<endl;
+        pos++;
+        }
+                cout<<"================================================================================================="<<endl;
                 if(total<0){
                 total=total*-1;
-                cout<<"EL EMPLEADO ADEUDADA "<<total<<" MINUTOS. "<<endl;///marcar total de hora adeudadas
+                cout<<"EL EMPLEADO ADEUDADA "<<total<<" MINUTOS. "<<endl<< endl;///marcar total de hora adeudadas
                 }
                 else{
-                    cout<<"EL EMPLEADO NO ADEUDAD HORAS"<<endl;
+                    cout<<"EL EMPLEADO NO ADEUDAD HORAS"<<endl<< endl;
                 }
         }
         system("pause");
@@ -281,27 +293,27 @@ bool DentroDelRango(int pos,int *vec,int mes,int anio){
 
 void nombreDia(int n){
     if(n==0){
-        cout<<"Domingo";
+        cout<<"Domingo...";
     }
     else{
         if(n==1){
-            cout<<"Lunes";
+            cout<<"Lunes.....";
         }
     else{
         if(n == 2){
-            cout<<"Martes";
+            cout<<"Martes....";
     }
     else{
             if(n == 3){
-            cout<<"Miercoles";
+            cout<<"Miercoles.";
     }
     else{
             if(n == 4){
-                cout<<"Jueves";
+                cout<<"Jueves....";
     }
     else{
             if(n == 5){
-                cout<<"Viernes";
+                cout<<"Viernes...";
     }
     else{
             if(n == 6){
