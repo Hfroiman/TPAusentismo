@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+bool anioBisiesto(int);
+
 int  Fecha::getDia(){
     return _dia;
 }
@@ -19,6 +21,9 @@ int  Fecha::getAnio(){
     int Fecha::getMinutos(){
     return minutos;
 }
+int Fecha::getNombreDia(){
+    return NombreDia;
+    }
 void Fecha::setDia(int dia){
     _dia = dia;
 }
@@ -34,6 +39,9 @@ void Fecha::setAnio(int anio){
     void Fecha::setMinutos(int m){
     minutos=m;
     }
+void Fecha::setNombreDia(int n){
+         NombreDia=n;
+     }
 Fecha::Fecha(int dia, int mes, int anio){
     _dia = dia;
     _mes = mes;
@@ -56,20 +64,22 @@ string Fecha::toString(){
     return fecha;
 }
 bool YaCargado(int d,int m,int a,int leg);
+int BuscaCantDiasXmes(int, bool);
 
 void Fecha::Cargar(int leg){
     int d,m,a, maxmes=12, dia;
-    bool cargado=true;
+    bool cargado=true, bisiesto;
     while(cargado==true){
         cout<<"INGRESAR ANIO "<<endl;
         cin>>a;
+        bisiesto=anioBisiesto(a);
         cout<<"INGRESAR MES "<<endl;
         cin>>m;
         while(m>maxmes){
             cout<<"EL MES DEBE SER EN EL RANGO DE 1 A 12 "<<endl;
             cin>>m;
         }
-        dia=BuscaCantDiasXmes(m);//GG
+        dia=BuscaCantDiasXmes(m, bisiesto);//GG
         cargado=YaCargado(dia,m,a,leg);
         if(cargado==false){
             setDia(dia);
@@ -81,6 +91,20 @@ void Fecha::Cargar(int leg){
             system("pause > null");
         }
     }
+}
+
+bool anioBisiesto(int a){
+    bool si;
+    if(a%4 != 0){
+        return false;
+    }
+    else if(a%100!=0){
+        return true;
+    }
+    else if(a%400!=0){
+        return false;
+    }
+        return true;
 }
 
 bool YaCargado(int d,int m,int a,int leg){
@@ -113,7 +137,7 @@ void Fecha::CargarH(){
         setMinutos(h);
 }
 
-int BuscaCantDiasXmes(int f){
+int BuscaCantDiasXmes(int f, bool bis){
     int d;
     if(f==4 ||f==6 ||f==9 || f==11){
         cout<<"INGRESAR DIA "<<endl;
@@ -125,23 +149,34 @@ int BuscaCantDiasXmes(int f){
         return d;
     }
     else{
-        if(f==2){
+        if(f==2 && bis==true){
             cout<<"INGRESAR DIA "<<endl;
             cin>>d;
-            while(d>28){
-            cout<<"INGRESAR DIA, RANGO DE 1 A 28"<<endl;
+            while(d>29){
+            cout<<"INGRESAR DIA, RANGO DE 1 A 29"<<endl;
             cin>>d;
             }
             return d;
         }
         else{
-            cout<<"INGRESAR DIA "<<endl;
-            cin>>d;
-            while(d>31){
-            cout<<"INGRESAR DIA, RANGO DE 1 A 31"<<endl;
-            cin>>d;
+            if(f==2 && bis==false){
+                cout<<"INGRESAR DIA "<<endl;
+                cin>>d;
+                while(d>28){
+                cout<<"INGRESAR DIA, RANGO DE 1 A 28"<<endl;
+                cin>>d;
+                }
+                return d;
             }
-            return d;
+            else{
+                cout<<"INGRESAR DIA "<<endl;
+                cin>>d;
+                while(d>31){
+                cout<<"INGRESAR DIA, RANGO DE 1 A 31"<<endl;
+                cin>>d;
+                }
+                return d;
+            }
         }
     }
 }

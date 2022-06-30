@@ -6,7 +6,7 @@ using namespace std;
 #include "fecha.h"
 
 void Empleado::Cargar(int leg){
-    int f=1, S;
+    int S;
     if(leg==0){
         cout<<"INGRESAR NUMERO DE LEGAJO "<<endl;
         cin>>leg;

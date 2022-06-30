@@ -22,6 +22,7 @@ void AsistenciaPersonal();
 void ListadoAsistencia();
     void SeparadorSemanas(int semana, int *);
     bool DentroDelRango(int ,int *,int ,int);
+    void nombreDia(int);
 ///funciones
 void CargaDatos(){
     Empleado obj;
@@ -165,7 +166,6 @@ void AsistenciaPersonal(){
                 cout<<"INGRESAR MENSAJE POR INCUMPLIMIENTO DEL PRESENTIMOS "<<endl;
                 cin>>m;
                 aux.setMSJ(m);
-                aux.getMSJ();
             }
             grabo=aux.grabarDisco();
             if(grabo==true){
@@ -208,22 +208,26 @@ void ListadoAsistencia(){
             cout<<aux.getApellido();
             cout<<" ========================================================="<<endl<<endl;
             pos=0;
-            cout <<"LEGAJO";
-            cout << "\t"<< "\tINGRESO";
-            cout << "\t"<< "\tEGRESO    " ;
+            cout << "LEGAJO";
+            cout << "\t   DIA    ";
+            cout << "\t"<< "\t INGRESO ";
+            cout << "\t"<<"\t  EGRESO  " ;
             cout << "\tHORA INGRESO";
             cout << "\tHORA EGRESO";
-            cout << "\tMENSAJE DEL EMPLEADO" << endl;
+            cout << "\tMENSAJE DEL EMPLEADO    " << endl;
             while(obj.leerDisco(pos)==1){
                 if(obj.getLegajo()==leg && DentroDelRango(pos, vecsemana, mes, anio)==true){
-                    cout << obj.getLegajo();///lEGAJO
-                    cout << "\t"<< "\t" << obj.getFechaEntrada().getDia()<< "/"; cout << obj.getFechaEntrada().getMes() << "/";
+                    cout << obj.getLegajo();
+                    cout << "\t";
+                    nombreDia(obj.getdia());
+                    cout << "\t"<< "\t"<<obj.getFechaEntrada().getDia()<< "/";
+                    cout << obj.getFechaEntrada().getMes() << "/";
                     cout << obj.getFechaEntrada().getAnio();///ENTRDA FECHA
-                    cout << "\t" << obj.getFechaSalida().getDia()<< "/"; cout << obj.getFechaSalida().getMes() << "/";
+                    cout << "\t"<< "\t" << obj.getFechaSalida().getDia()<< "/"; cout << obj.getFechaSalida().getMes() << "/";
                     cout << obj.getFechaSalida().getAnio();///FECHA SALIDA
                     cout << "\t" <<"   "<<obj.getHoraEntrada().getHora()<<":"<<obj.getHoraEntrada().getMinutos();///HORA ENTRADA
                     cout << "\t"<< "\t" <<"   "<<obj.getHoraSalida().getHora()<<":"<<obj.getHoraSalida().getMinutos();///HORA SALIDA
-                    cout << "\t"<< "\t" ; obj.getMSJ();
+                    cout << "\t"<< "\t" << obj.getMSJ();
                     cout << endl;
                     total+=(obj.getMinutosFaltantes());
                 }
@@ -273,6 +277,38 @@ bool DentroDelRango(int pos,int *vec,int mes,int anio){
     else{
         return false;
     }
+}
+
+void nombreDia(int n){
+    if(n==0){
+        cout<<"Domingo";
+    }
+    else{
+        if(n==1){
+            cout<<"Lunes";
+        }
+    else{
+        if(n == 2){
+            cout<<"Martes";
+    }
+    else{
+            if(n == 3){
+            cout<<"Miercoles";
+    }
+    else{
+            if(n == 4){
+                cout<<"Jueves";
+    }
+    else{
+            if(n == 5){
+                cout<<"Viernes";
+    }
+    else{
+            if(n == 6){
+            cout<<"Sabado";
+    }
+    }}}}}}
+    return;
 }
 
 #endif // CLASES_H_INCLUDED
