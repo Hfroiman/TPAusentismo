@@ -7,6 +7,7 @@ void Bienvenida (){
         cout<<"===================== BIENVENIDOS ==================="<<endl;
         cout<<"                       GRUPO 20"<<endl;
         cout<<"            SISTEMA DE GESTION DE ASISTENCIA"<<endl;
+        //cout<<"Horarios de Lunes a Viernes de 8HS"<<endl;
         cout<<"====================================================="<<endl;
         system("pause");
         system("cls");

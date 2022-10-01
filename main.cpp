@@ -61,7 +61,7 @@ int main(){
                 cout<<"NO - 1"<<endl;
                 cout<<"SI - 0"<<endl;
                 cin>>opc;
-                return 0;
+                return opc;
         }
         system("pause");
     }

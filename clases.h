@@ -163,9 +163,10 @@ void AsistenciaPersonal(){
         if(pos>=0){
             aux.Cargar(leg);
             if((aux.getMinutosFaltantes()*-1)>0){
-                char m[25]{0};
+                char m[25];
                 cout<<"INGRESAR MENSAJE POR INCUMPLIMIENTO DEL PRESENTIMOS "<<endl;
-                cin>>m;
+                cin.ignore();
+                cin.getline(m,25);
                 aux.setMSJ(m);
             }
             grabo=aux.grabarDisco();
@@ -230,15 +231,15 @@ void ListadoAsistencia(){
                 int hsa=obj.getHoraSalida().getHora(), mss=obj.getHoraSalida().getMinutos();
             cout << left;
             nombreDia(obj.getdia());
-            cout << setw(2) << "   Entrada " ;
+            cout << setw(2) << "   Entrada: " ;
             cout << setw(2) <<din<<t<<mei<<t<<ain;
-            cout << setw(2) << "   Salida ";
+            cout << setw(2) << "   Salida: ";
             cout << setw(2) <<dse<<t<<mse<<t<<ans;
-            cout << setw(2) << "   Hora Entrada ";
+            cout << setw(2) << "   Hora Entrada: ";
             cout << setw(2) <<hin<<h<<minr;
-            cout << setw(2) << "   Salida ";
+            cout << setw(2) << "   Salida: ";
             cout << setw(2) <<hsa<<h<<mss;
-            cout << setw(15) << "  MENSAJE EMPLEADO ";
+            cout << setw(15) << "  MENSAJE EMPLEADO: ";
             cout << setw(15) <<obj.getMSJ();
             cout << endl;
             total+=(obj.getMinutosFaltantes());
@@ -251,7 +252,7 @@ void ListadoAsistencia(){
                 cout<<"EL EMPLEADO ADEUDADA "<<total<<" MINUTOS. "<<endl<< endl;///marcar total de hora adeudadas
                 }
                 else{
-                    cout<<"EL EMPLEADO NO ADEUDAD HORAS"<<endl<< endl;
+                    cout<<"EL EMPLEADO NO ADEUDA HORAS"<<endl<< endl;
                 }
         }
         system("pause");
@@ -317,7 +318,7 @@ void nombreDia(int n){
     }
     else{
             if(n == 6){
-            cout<<"Sabado";
+            cout<<"Sabado....";
     }
     }}}}}}
     return;

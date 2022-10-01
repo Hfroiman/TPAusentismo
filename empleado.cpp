@@ -13,7 +13,7 @@ void Empleado::Cargar(int leg){
     }
     else{
         Legajo=leg;
-        cout<<"INGRESAR NUMERO DE SECTOR (1. ADMINISTRACION- 2. PRODUCCION- 3. RRHH)"<<endl;
+        cout<<"INGRESAR NUMERO DE SECTOR (1. ADMINISTRACION- 2. PRODUCCION- 3. RRHH- 4. COMPRAS - 5. SISTEMAS ) "<<endl;
         cin>>S;
         while(S>5){
             cout<<"INGRESAR NUMERO DE SECTOR DEL 1 AL 5"<<endl;
